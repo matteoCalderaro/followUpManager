@@ -17,6 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const avantiButton = document.getElementById('avantiButton'); 
     const saveNotesButton = document.getElementById('saveNotesButton');
     const cancelNotesButton = document.getElementById('cancelNotesButton');
+    const settingsIcon = document.getElementById('settingsIcon'); // Get reference to the new gear icon
+
+    const spinnerOverlay = document.getElementById('spinnerOverlay'); // Get reference to the spinner overlay
     
     // --- Initial State Setup (critical for fade transitions) ---
     // Ensure timelineContainerWrapper is visible and active initially
@@ -125,4 +128,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 100); // 100ms delay (adjust as needed)
         });
     }
+    
+    // --- Settings Icon Click Handler (for spinner) ---
+    settingsIcon.addEventListener('click', () => {
+        spinnerOverlay.style.display = 'flex'; // Show the spinner overlay
+        
+        setTimeout(() => {
+            spinnerOverlay.style.display = 'none'; // Hide the spinner overlay after 2 seconds
+        }, 4000); // 2000 milliseconds = 2 seconds
+    });
 });
