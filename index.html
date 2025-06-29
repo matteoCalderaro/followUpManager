@@ -60,7 +60,7 @@
                             <td class="text-end">
                                 <i class="fas fa-cog icon-gradient me-3" style="cursor: pointer; font-size: 27px;" id="settingsIcon"></i> 
                                 <i class="far fa-eye icon-gradient me-3" style="cursor: pointer; font-size: 27px;" onclick="openModal()"></i>
-                                <i class="fas fa-headphones icon-gradient" style="cursor: pointer; font-size: 27px;"></i> 
+                                <i class="fas fa-headphones icon-gradient" style="cursor: pointer; font-size: 27px;" id="openAudioModalBtn"></i> 
                             </td>
                         </tr>
                     </tbody>
@@ -111,7 +111,7 @@
         </div>
         
     </div>
-    
+
     <!-- Spinner Overlay -->
     <div id="spinnerOverlay">
         <div class="bar-spinner">
@@ -123,12 +123,12 @@
         </div>
     </div>
     
-    <!-- ERROR MODAL -->
+    <!-- Transcription Modal -->
     <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
             <div class="modal-content">
                 <div class="modal-header d-flex justify-content-between">
-                    <h5 class="modal-title fw-bold text-primary text-uppercase" id="errorModalLabel">Please Fix the Following Errors</h5>
+                    <h5 class="modal-title fw-bold text-primary text-uppercase" id="errorModalLabel">Trascrizione dell'Appuntamento (25/06/2025)</h5>
                     <button type="button" data-bs-dismiss="modal" aria-label="Close" id="modalCloseButton"><i class="fas fa-times"></i></button>
                 </div>
                 <div class="modal-body" style=" max-height: 50vh; overflow-y: auto;">
@@ -136,9 +136,7 @@
                     
                     <p>Ho tirato fuori la nuova linea in bamboo e sughero, e lì ho visto che gli occhi gli brillavano. Segno che sono sulla strada giusta con quei prodotti. Poi è venuto fuori il discorso dei powerbank... mi ha chiesto se ne facciamo con confezioni regalo, e anche di gadget tech con NFC. Questa cosa dell'NFC è interessante, significa che puntano a campagne più innovative, interattive. C'è potenziale lì, devo approfondire cosa intendono esattamente.</p>
                     
-                    <p>C'è stato un punto un po' delicato, ha tirato fuori dei ritardi nelle spedizioni che hanno avuto a marzo 2024. Non con noi, per fortuna, era con un fornitore precedente. Però si capisce che sono un po' scottati. Ho cercato di rassicurarlo al massimo sulla nostra logistica interna, sulle garanzie di consegna, sui nostri controlli qualità. Gli ho promesso che facciamo una verifica interna approfondita anche se non ci riguarda direttamente, giusto per mostrare il nostro impegno. La trasparenza è fondamentale in questi casi.</p>
-                    
-                    <p>Nel complesso, l'incontro è stato costruttivo. Non è un cliente che compra subito, vuole pianificare, vedere le cose con calma. Ha detto che vuole valutare con il suo team. Devo essere proattivo nel follow-up, ma senza mettergli fretta. La cosa importante è che ha apprezzato la nostra offerta e la nostra disponibilità. Ho l'impressione che se riusciamo a superare la sua iniziale cautela data dalle esperienze passate, possiamo costruire qualcosa di solido.</p>
+                    <p>C'è stato un punto un'po' delicato, ha tirato fuori dei ritardi nelle spedizioni che hanno avuto a marzo 2024. Non con noi, per fortuna, era con un fornitore precedente. Però si capisce che sono un'po' scottati. Ho cercato di rassicurarlo al massimo sulla nostra logistica interna, sulle garanzie di consegna, sui nostri controlli qualità. Gli ho promesso che facciamo una verifica interna approfondita anche se non ci riguarda direttamente, giusto per mostrare il nostro impegno. La trasparenza è fondamentale in questi casi.</p>
                     
                     <h5>Prossimi Passi:</h5>
                     <ul>
@@ -151,6 +149,38 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-blue-dark text-white fw-bold text-uppercase"  style="width: 90px;" data-bs-dismiss="modal">OK</button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio Player Modal -->
+    <div class="modal fade" id="audioPlayerModal" tabindex="-1" aria-labelledby="audioPlayerModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-between align-items-center">
+                    <h5 class="modal-title fw-bold text-primary text-uppercase" id="audioPlayerModalLabel">Ascolta Registrazione</h5>
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-download icon-gradient me-3" style="cursor: pointer; font-size: 27px;" id="audioDownloadIcon"></i>
+                        <button type="button" data-bs-dismiss="modal" aria-label="Close" id="audioModalCloseButton"><i class="fas fa-times"></i></button>
+                    </div>
+                </div>
+                <div class="modal-body text-center">
+                    <!-- 
+                        IMPORTANT: Replace "media/speech.mp3" with the actual path
+                        to the MP3 file you generated and placed in your "media/" directory.
+                        e.g., src="media/appointment_summary.mp3"
+                    -->
+                    <audio id="audioPlayer" src="media/speech.mp3" preload="metadata"></audio>
+                    
+                    <div class="audio-player-controls d-flex flex-row justify-content-center">
+                        <button id="playPauseBtn"><i class="fas fa-play"></i></button>
+                        <div class="progress-container" id="progressContainer">
+                            <div class="progress-bar" id="progressBar"></div>
+                        </div>
+                        <span class="time-display" id="currentTime">0:00</span> / <span class="time-display" id="duration">0:00</span>
+                    </div>
+                </div>
+                <!-- Modal Footer Removed -->
             </div>
         </div>
     </div>

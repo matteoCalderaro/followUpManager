@@ -13,14 +13,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const timelineContainerWrapper = document.getElementById('timelineContainerWrapper');
     const ckeditorContainerWrapper = document.getElementById('ckeditorContainerWrapper');
     
-    // Get references to buttons and new settings icon
+    // Get references to buttons and new icons
     const avantiButton = document.getElementById('avantiButton'); 
     const saveNotesButton = document.getElementById('saveNotesButton');
     const cancelNotesButton = document.getElementById('cancelNotesButton');
-    const settingsIcon = document.getElementById('settingsIcon'); // Get reference to the new gear icon
+    const settingsIcon = document.getElementById('settingsIcon'); // Gear icon for spinner
+    const openAudioModalBtn = document.getElementById('openAudioModalBtn'); // Headphone icon for audio modal
     
-    const spinnerOverlay = document.getElementById('spinnerOverlay'); // Get reference to the spinner overlay
-    // const modalCloseButton = document.getElementById('modalCloseButton'); // No longer needed as data-bs-dismiss handles it
+    const spinnerOverlay = document.getElementById('spinnerOverlay'); // Spinner overlay reference
+    
+    // Audio Player elements
+    const audioPlayer = document.getElementById('audioPlayer');
+    const playPauseBtn = document.getElementById('playPauseBtn');
+    const progressBar = document.getElementById('progressBar');
+    const progressContainer = document.getElementById('progressContainer');
+    const currentTimeSpan = document.getElementById('currentTime');
+    const durationSpan = document.getElementById('duration');
+    const audioDownloadIcon = document.getElementById('audioDownloadIcon'); // New download icon in header
+    
+    // Transcription Modal Body for text extraction (although not used directly for TTS src anymore)
+    const transcriptionModalBody = document.querySelector('#errorModal .modal-body');
+    
+    // Get audio modal instance
+    const audioPlayerModalEl = document.getElementById('audioPlayerModal');
+    const audioPlayerModal = new bootstrap.Modal(audioPlayerModalEl);
     
     // --- Initial State Setup (critical for fade transitions) ---
     // Ensure timelineContainerWrapper is visible and active initially
@@ -139,6 +155,69 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 2000); // 2000 milliseconds = 2 seconds
     });
     
-    // The original `modalCloseButton` click listener is now removed,
-    // as `data-bs-dismiss="modal"` handles the modal closing.
+    // --- Audio Player Modal Logic ---
+    
+    // Function to format time for display
+    function formatTime(seconds) {
+        const minutes = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+    }
+    
+    // Event listener to open the audio modal
+    openAudioModalBtn.addEventListener('click', () => {
+        // Set the audioPlayer.src to your local MP3 file
+        audioPlayer.src = "media/speech.mp3"; 
+        
+        audioPlayerModal.show();
+    });
+    
+    // Play/Pause functionality
+    playPauseBtn.addEventListener('click', () => {
+        if (audioPlayer.paused) {
+            audioPlayer.play();
+            playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+        } else {
+            audioPlayer.pause();
+            playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+        }
+    });
+    
+    // Update progress bar and current time
+    audioPlayer.addEventListener('timeupdate', () => {
+        const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+        progressBar.style.width = `${progress}%`;
+        currentTimeSpan.textContent = formatTime(audioPlayer.currentTime);
+    });
+    
+    // Display duration when metadata is loaded
+    audioPlayer.addEventListener('loadedmetadata', () => {
+        durationSpan.textContent = formatTime(audioPlayer.duration);
+    });
+    
+    // Handle progress bar clicks to seek
+    progressContainer.addEventListener('click', (e) => {
+        const seekTime = (e.offsetX / progressContainer.offsetWidth) * audioPlayer.duration;
+        audioPlayer.currentTime = seekTime;
+    });
+    
+    // Reset player when modal is hidden
+    audioPlayerModalEl.addEventListener('hidden.bs.modal', () => {
+        audioPlayer.pause();
+        audioPlayer.currentTime = 0;
+        playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+        progressBar.style.width = '0%';
+        currentTimeSpan.textContent = '0:00';
+    });
+    
+    // Download audio functionality for the new header icon
+    audioDownloadIcon.addEventListener('click', () => {
+        const audioUrl = audioPlayer.src;
+        const link = document.createElement('a');
+        link.href = audioUrl;
+        link.download = 'recording.mp3'; // Default filename
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    });
 });

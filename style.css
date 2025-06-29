@@ -157,7 +157,7 @@ CK EDITOR STYLE OVERRIDE
 }
 
 .ck-editor__editable_inline {
-    background-color: var(--secondary) !important; 
+    background-color: #202A35 !important; /* Updated background color for better distinction */
     color: white; 
     padding: 1rem; 
     min-height: 250px; 
@@ -212,7 +212,7 @@ CK EDITOR STYLE OVERRIDE
 
 /* spondo header */
 .ck.ck-toolbar.ck-toolbar_grouping  {
-    background-color: #7c4949!important;
+    background-color: #b65c5c!important;
 }
 
 
@@ -280,6 +280,7 @@ CK EDITOR STYLE OVERRIDE
 .modal-content {
     background-color: var(--secondary-lighter); /* Body and footer background */
     color: white; /* Default text color for modal body */
+    border-radius: 12px; /* Added: Rounded border edges for modals */
 }
 
 .modal-header {
@@ -295,7 +296,7 @@ CK EDITOR STYLE OVERRIDE
 }
 
 /* Custom Close Button Styling */
-#modalCloseButton {
+#modalCloseButton, #audioModalCloseButton { /* Apply to both modals */
     background: transparent; /* Ensure no default background */
     border: none;
     cursor: pointer;
@@ -307,9 +308,10 @@ CK EDITOR STYLE OVERRIDE
     align-items: center;
     border-radius: 50%; /* Make it round */
     transition: background-color 0.2s ease-in-out; /* Smooth hover effect */
+    margin-left: 10px; /* Spacing for the download icon */
 }
 
-#modalCloseButton .fas.fa-times {
+#modalCloseButton .fas.fa-times, #audioModalCloseButton .fas.fa-times {
     font-size: 1.5rem; /* Icon size */
     /* Apply gradient and make text transparent for the icon permanently */
     background: var(--gradient);
@@ -318,12 +320,12 @@ CK EDITOR STYLE OVERRIDE
     -webkit-text-fill-color: transparent; /* For better cross-browser compatibility */
 }
 
-#modalCloseButton:hover {
+#modalCloseButton:hover, #audioModalCloseButton:hover {
     background-color: rgba(255, 255, 255, 0.1); /* Slight background on hover */
 }
 
 /* Override Bootstrap's focus style for btn-close if it adds a box-shadow */
-#modalCloseButton:focus {
+#modalCloseButton:focus, #audioModalCloseButton:focus {
     box-shadow: none !important;
     outline: none !important;
 }
@@ -331,7 +333,31 @@ CK EDITOR STYLE OVERRIDE
 .modal-body {
     background-color: var(--secondary-lighter); /* Body background */
     color: white; /* Body text color */
+    /* Added: Rounded bottom corners for modal-body */
+    border-bottom-left-radius: 7px; 
+    border-bottom-right-radius: 7px; 
 }
+
+/* Style for h5 inside modal body */
+.modal-body h5 {
+    font-size: 1.1rem; /* Adjusted font size for h5 */
+    font-weight: bold; /* Keep it bold */
+    color: white; /* Ensure text color is white */
+    margin-top: 1rem; /* Add some spacing above the h5 */
+    margin-bottom: 0.5rem; /* Add some spacing below the h5 */
+}
+
+.modal-body h5:first-child {
+    margin-top: 0; /* Remove top margin for the first h5 */
+}
+
+/* Style for h4 inside modal body (kept original h4 styling if needed elsewhere) */
+.modal-body h4 {
+    font-size: 1.2rem; /* Kept original h4 size for consistency if needed elsewhere */
+    font-weight: bold; /* Keep it bold */
+    color: white; /* Ensure text color is white */
+}
+
 
 .modal-footer {
     background-color: var(--secondary-lighter); /* Footer background */
@@ -387,4 +413,60 @@ CK EDITOR STYLE OVERRIDE
 
 .modal-body::-webkit-scrollbar-thumb:hover {
     background: var(--primary); /* Keep the same primary color on hover */
+}
+
+/* --- Custom Audio Player Styles --- */
+.audio-player-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+    padding-bottom: 25px; /* Added: Padding at the bottom of controls */
+    width: 100%;
+}
+
+.audio-player-controls button {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    flex-shrink: 0; /* Prevent button from shrinking */
+}
+
+.audio-player-controls button:hover {
+    background-color: #e74c3c; /* Darker primary on hover */
+}
+
+.audio-player-controls button i {
+    font-size: 1.2rem;
+}
+
+.progress-container {
+    flex-grow: 1; /* Allows progress bar to take available space */
+    height: 8px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: var(--gradient); /* Use your gradient for the progress */
+    border-radius: 5px;
+}
+
+.time-display {
+    color: white;
+    font-size: 0.9rem;
+    flex-shrink: 0; /* Prevent time from shrinking */
+    text-align: right;
 }
