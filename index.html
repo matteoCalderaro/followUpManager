@@ -27,31 +27,18 @@
     
 </head>
 <body class="bgfm-secondary">
-
-    <!-- Spinner Overlay -->
-    <div id="spinnerOverlay">
-        <div class="bar-spinner">
-            <div class="loading-bar"></div>
-            <div class="loading-bar"></div>
-            <div class="loading-bar"></div>
-            <div class="loading-bar"></div>
-            <div class="loading-bar"></div>
-        </div>
-    </div>
-    
     
     <div class="container" style="margin-top: 80px;">
-
+        
         <div class="d-flex align-items-center mb-4 gap-4">
-
+            
             <img src="media/logo-bi.svg" width="50" alt="Another SVG icon">
-    
+            
             <div class="fs-2 text-primary title">Bi Network s.r.l</div>
         </div>
-
         
-        <!-- TABLE -->
-        <div class="bgfm-secondary-lighter rounded-3   mb-4 p-1 px-3">
+        
+        <div class="bgfm-secondary-lighter rounded-3 mb-4 p-1 px-3">
             
             <div class="table-responsive">
                 <table class="table fm-table" style="width: 100%;">
@@ -71,21 +58,17 @@
                             <td>Visita in presenza</td>
                             <td>Analisi campagne passate, presentazione nuove linee, raccolta brief</td>
                             <td class="text-end">
-                                <i id="settingsIcon" class="fas fa-cog icon-gradient me-3" style="cursor: pointer; font-size: 27px;"></i> 
+                                <i class="fas fa-cog icon-gradient me-3" style="cursor: pointer; font-size: 27px;" id="settingsIcon"></i> 
                                 <i class="far fa-eye icon-gradient me-3" style="cursor: pointer; font-size: 27px;" onclick="openModal()"></i>
-                                <i class="fas fa-headphones icon-gradient" style="cursor: pointer; font-size: 27px;"></i>
+                                <i class="fas fa-headphones icon-gradient" style="cursor: pointer; font-size: 27px;"></i> 
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-
+            
         </div>
         
-        <!-- === START DUPLICATED CONTAINER STRUCTURE (NOW FADING) === -->
-
-        <!-- Timeline Container Wrapper - Initially visible -->
-        <!-- Added fade-toggable class, and px-4 for consistent inner padding -->
         <div id="timelineContainerWrapper" class="bgfm-secondary-lighter rounded-3 py-3 fade-toggable">
             <div id="timelineCard" class="d-flex align-items-end pe-4">
                 <div class="text-white w-100 rounded-3">
@@ -116,7 +99,6 @@
             </div>
         </div>
         
-        <!-- CKEditor Container Wrapper - Initially hidden -->
         <div id="ckeditorContainerWrapper" class="bgfm-secondary-lighter rounded-3 py-3 fade-toggable" style="display: none;">
             <div id="ckeditorCard" class="bgfm-secondary-lighter rounded-3 px-4">
                 <div class="text-white mb-3 text-uppercase text-primary fw-bold">Aggiungi note personali</div>
@@ -127,33 +109,47 @@
                 </div>
             </div>
         </div>
-
-        <!-- === END DUPLICATED CONTAINER STRUCTURE === -->
-
-
         
+    </div>
+    
+    <!-- Spinner Overlay -->
+    <div id="spinnerOverlay">
+        <div class="bar-spinner">
+            <div class="loading-bar"></div>
+            <div class="loading-bar"></div>
+            <div class="loading-bar"></div>
+            <div class="loading-bar"></div>
+            <div class="loading-bar"></div>
+        </div>
     </div>
     
     <!-- ERROR MODAL -->
     <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="errorModalLabel">Please Fix the Following Errors</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-header d-flex justify-content-between">
+                    <h5 class="modal-title fw-bold text-primary text-uppercase" id="errorModalLabel">Please Fix the Following Errors</h5>
+                    <button type="button" data-bs-dismiss="modal" aria-label="Close" id="modalCloseButton"><i class="fas fa-times"></i></button>
                 </div>
                 <div class="modal-body" style=" max-height: 50vh; overflow-y: auto;">
-                    <ul class="mb-0">
-                        <li>Error 1: Missing name field.</li>
-                        <li>Error 2: Email is invalid.</li>
-                        <li>Error 3: Password must be at least 8 characters.
-                            <div style="height: 1000px;"></div>
-                        </li>
-                        <li>Error 4: You must accept the terms and conditions.</li>
+                    <p>Ok, riepilogo veloce sull'appuntamento di oggi con il Sig. Bianchi di Azienda X. È andata abbastanza bene direi. All'inizio l'ho lasciato parlare, volevo capire bene cosa cercano in questo momento per i gadget promozionali. Mi è parso subito chiaro che hanno una certa sensibilità verso l'ambiente, quindi l'eco-friendly è un must. E poi sono molto attenti a personalizzare le cose, non vogliono il solito gadget standard, ma qualcosa che parli del loro brand in modo unico.</p>
+                    
+                    <p>Ho tirato fuori la nuova linea in bamboo e sughero, e lì ho visto che gli occhi gli brillavano. Segno che sono sulla strada giusta con quei prodotti. Poi è venuto fuori il discorso dei powerbank... mi ha chiesto se ne facciamo con confezioni regalo, e anche di gadget tech con NFC. Questa cosa dell'NFC è interessante, significa che puntano a campagne più innovative, interattive. C'è potenziale lì, devo approfondire cosa intendono esattamente.</p>
+                    
+                    <p>C'è stato un punto un po' delicato, ha tirato fuori dei ritardi nelle spedizioni che hanno avuto a marzo 2024. Non con noi, per fortuna, era con un fornitore precedente. Però si capisce che sono un po' scottati. Ho cercato di rassicurarlo al massimo sulla nostra logistica interna, sulle garanzie di consegna, sui nostri controlli qualità. Gli ho promesso che facciamo una verifica interna approfondita anche se non ci riguarda direttamente, giusto per mostrare il nostro impegno. La trasparenza è fondamentale in questi casi.</p>
+                    
+                    <p>Nel complesso, l'incontro è stato costruttivo. Non è un cliente che compra subito, vuole pianificare, vedere le cose con calma. Ha detto che vuole valutare con il suo team. Devo essere proattivo nel follow-up, ma senza mettergli fretta. La cosa importante è che ha apprezzato la nostra offerta e la nostra disponibilità. Ho l'impressione che se riusciamo a superare la sua iniziale cautela data dalle esperienze passate, possiamo costruire qualcosa di solido.</p>
+                    
+                    <h5>Prossimi Passi:</h5>
+                    <ul>
+                        <li>Preparare e inviare il kit demo entro il 30/06.</li>
+                        <li>Elaborare un preventivo personalizzato dettagliato entro il 03/07, con enfasi sui prodotti eco-friendly e NFC.</li>
+                        <li>Effettuare un follow-up telefonico dopo il 05/07 per discutere il preventivo e rispondere a eventuali domande.</li>
+                        <li>Garantire una comunicazione proattiva su eventuali aggiornamenti logistici.</li>
                     </ul>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-blue-dark text-white btn-sm fw-medium"  style="width: 90px;" data-bs-dismiss="modal">OK</button>
+                    <button type="button" class="btn btn-blue-dark text-white fw-bold text-uppercase"  style="width: 90px;" data-bs-dismiss="modal">OK</button>
                 </div>
             </div>
         </div>

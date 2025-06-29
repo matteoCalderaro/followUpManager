@@ -13,13 +13,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const timelineContainerWrapper = document.getElementById('timelineContainerWrapper');
     const ckeditorContainerWrapper = document.getElementById('ckeditorContainerWrapper');
     
-    // Get references to buttons 
+    // Get references to buttons and new settings icon
     const avantiButton = document.getElementById('avantiButton'); 
     const saveNotesButton = document.getElementById('saveNotesButton');
     const cancelNotesButton = document.getElementById('cancelNotesButton');
     const settingsIcon = document.getElementById('settingsIcon'); // Get reference to the new gear icon
-
+    
     const spinnerOverlay = document.getElementById('spinnerOverlay'); // Get reference to the spinner overlay
+    // const modalCloseButton = document.getElementById('modalCloseButton'); // No longer needed as data-bs-dismiss handles it
     
     // --- Initial State Setup (critical for fade transitions) ---
     // Ensure timelineContainerWrapper is visible and active initially
@@ -135,6 +136,9 @@ document.addEventListener('DOMContentLoaded', () => {
         
         setTimeout(() => {
             spinnerOverlay.style.display = 'none'; // Hide the spinner overlay after 2 seconds
-        }, 4000); // 2000 milliseconds = 2 seconds
+        }, 2000); // 2000 milliseconds = 2 seconds
     });
+    
+    // The original `modalCloseButton` click listener is now removed,
+    // as `data-bs-dismiss="modal"` handles the modal closing.
 });

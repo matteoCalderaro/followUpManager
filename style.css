@@ -212,7 +212,7 @@ CK EDITOR STYLE OVERRIDE
 
 /* spondo header */
 .ck.ck-toolbar.ck-toolbar_grouping  {
-    background-color: #b65c5c!important;
+    background-color: #7c4949!important;
 }
 
 
@@ -227,8 +227,6 @@ CK EDITOR STYLE OVERRIDE
     pointer-events: none; /* Disable clicks on hidden elements */
 }
 
-
-
 /* --- Spinner and Overlay Styles --- */
 #spinnerOverlay {
     position: fixed;
@@ -241,6 +239,9 @@ CK EDITOR STYLE OVERRIDE
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
     z-index: 10000; /* Ensure it's on top of everything */
+    /* Add backdrop-filter for blur effect */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px); /* For Safari support */
 }
 
 /* Styles for the bar chart spinner */
@@ -250,6 +251,8 @@ CK EDITOR STYLE OVERRIDE
     align-items: flex-end; /* Align bars to the bottom */
     width: 120px; /* Overall width of the spinner (increased) */
     height: 90px; /* Overall height of the spinner (increased) */
+    padding: 15px 0; /* Added padding top/bottom to distance bars from edge */
+    box-sizing: content-box; /* Ensures padding adds to total height */
 }
 
 .loading-bar {
@@ -271,4 +274,117 @@ CK EDITOR STYLE OVERRIDE
 @keyframes bounce {
     0%, 100% { transform: scaleY(1); }
     50% { transform: scaleY(2.5); } /* Makes the bar taller */
+}
+
+/* --- Modal Styling --- */
+.modal-content {
+    background-color: var(--secondary-lighter); /* Body and footer background */
+    color: white; /* Default text color for modal body */
+}
+
+.modal-header {
+    background-color: var(--secondary-lighter); /* Header background */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+}
+
+.modal-title {
+    color: var(--primary); /* Title color */
+    font-weight: bold; /* Make it bold like th texts */
+    text-transform: uppercase; /* Match th texts */
+    letter-spacing: 0.5px; /* Match th texts */
+}
+
+/* Custom Close Button Styling */
+#modalCloseButton {
+    background: transparent; /* Ensure no default background */
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    width: 30px; /* Fixed width to make it round */
+    height: 30px; /* Fixed height to make it round */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%; /* Make it round */
+    transition: background-color 0.2s ease-in-out; /* Smooth hover effect */
+}
+
+#modalCloseButton .fas.fa-times {
+    font-size: 1.5rem; /* Icon size */
+    /* Apply gradient and make text transparent for the icon permanently */
+    background: var(--gradient);
+    background-clip: text;
+    color: transparent; /* This makes the text itself transparent, revealing the clipped background */
+    -webkit-text-fill-color: transparent; /* For better cross-browser compatibility */
+}
+
+#modalCloseButton:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Slight background on hover */
+}
+
+/* Override Bootstrap's focus style for btn-close if it adds a box-shadow */
+#modalCloseButton:focus {
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+.modal-body {
+    background-color: var(--secondary-lighter); /* Body background */
+    color: white; /* Body text color */
+}
+
+.modal-footer {
+    background-color: var(--secondary-lighter); /* Footer background */
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+}
+
+.modal-footer .btn-blue-dark { /* Target the specific button in your footer */
+    /* Apply button-gradient styles */
+    position: relative;
+    padding: 4px 1em;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    cursor: pointer;
+    z-index: 0;
+    color: white !important; /* Override any Bootstrap default */
+    font-weight: bold; /* Match Aggiungi nota button */
+    text-transform: uppercase; /* Match Aggiungi nota button */
+    width: auto !important; /* Override inline width from original HTML */
+}
+.modal-footer .btn-blue-dark::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 2px; /* Border thickness */
+    background: var(--gradient);
+    border-radius: inherit;
+    z-index: -1;
+    -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+}
+
+/* --- Custom Scrollbar Styles for .modal-body --- */
+.modal-body::-webkit-scrollbar {
+    width: 10px; /* Width of the scrollbar */
+}
+
+.modal-body::-webkit-scrollbar-track {
+    background: rgba(255, 107, 107, 0.2); /* Lighter, semi-transparent primary color for the track */
+    border-radius: 10px; /* Rounded corners for the track */
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+    background: var(--primary); /* Primary color for the scrollbar thumb */
+    border-radius: 10px; /* Rounded corners for the thumb */
+    border: 2px solid rgba(255, 107, 107, 0.2); /* Creates visual distance by matching track color */
+    background-clip: padding-box; /* Ensures the background color respects the border */
+}
+
+.modal-body::-webkit-scrollbar-thumb:hover {
+    background: var(--primary); /* Keep the same primary color on hover */
 }
