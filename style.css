@@ -13,10 +13,6 @@
     --dark: black;
 }
 
-/* BASE */
-/* html {
-  font-size: 14px;
-} */
 
 body {
     font-family: 'Lato', sans-serif;
@@ -25,25 +21,25 @@ body {
 *, *::before, *::after {
     box-sizing: border-box;
 }
-.fm-text {
-    color: var(--primary);
-}
-.fm-bg-primary {
+
+.bgfm-primary {
     background-color: var(--primary);
 }
-.fm-bg-primary-dark {
+.bgfm-primary-dark {
     background-color: var(--primary-dark);
 }
-.fm-gradient {
+
+
+.icon-gradient {
     background: var(--gradient);
     background-clip: text;
     color: transparent;
 }
 .text-gradient {
   display: inline-block;
-  font-weight: bold; /* Optional: makes gradient show more clearly */
+  font-weight: bold;
   background-image: linear-gradient(90deg, #0ee951, #00dabf);
-  background-size: 100% 10%; /* More stretch = more visible transition */
+  background-size: 100% 10%;
   background-position: center;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -53,28 +49,6 @@ body {
 .text-green{
     color: var(--green) !important;
 }
-/* button {
-  background: white;
-  color: white;
-  padding: 0.5em 1em;
-  border: none;
-  border-radius: 12px;
-  position: relative;
-  z-index: 0;
-}
-
-button::before {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: var(--gradient);
-  border-radius: inherit;
-  z-index: -1;
-} */
-
 
 .button-gradient {
     position: relative;
@@ -95,27 +69,11 @@ button::before {
     -webkit-text-fill-color: transparent;
     }
 
-.button-gradient::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    padding: 2px; /* Border thickness */
-    background: var(--gradient);
-    border-radius: inherit;
-    z-index: -1;
-
-    -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-}
-
 .border-gradient {
     position: relative;
     z-index: 0;
 }
-
+.button-gradient::before, 
 .border-gradient::before {
     content: "";
     position: absolute;
@@ -132,6 +90,10 @@ button::before {
     mask-composite: exclude;
 }
 
+
+/**************
+ TIMELINE 
+ *************/
 ul.timeline {
     list-style-type: none;
     position: relative;
@@ -166,8 +128,9 @@ ul.timeline > li:before {
 }
 
 
-
-/* Custom Table Styles */
+/*********************
+ CUSTOM TABLE STYLE 
+ ********************/
 .fm-table {
     background-color: var(--primary-dark);
     border-radius: 12px;

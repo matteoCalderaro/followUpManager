@@ -17,13 +17,16 @@
     <link rel="stylesheet" href="style.css">
     
 </head>
-<body class="fm-bg-primary">
+<body class="bgfm-primary">
     
+
     <div class="container">
-        
+
+        <!-- TITLE -->
         <div class="text-gradient my-4 fs-2">Nome cliente</div>
-                
-        <div class="fm-bg-primary-dark p-1 rounded-3  border-gradient mb-4">
+        
+        <!-- TABLE -->
+        <div class="bgfm-primary-dark rounded-3  border-gradient mb-4 p-1 px-3">
             
             <div class="table-responsive">
                 <table class="table fm-table" style="width: 100%;">
@@ -42,9 +45,9 @@
                             <td>Mauro Rossi</td>
                             <td>Visita in presenza</td>
                             <td>Analisi campagne passate, presentazione nuove linee, raccolta brief</td>
-                            <td>
-                                <i class="far fa-eye fm-gradient me-3" style="cursor: pointer; font-size: 27px;" onclick="validateTable1()"></i>
-                                <i class="fas fa-headphones fm-gradient" style="cursor: pointer; font-size: 27px;"></i>
+                            <td class="text-end">
+                                <i class="far fa-eye icon-gradient me-3" style="cursor: pointer; font-size: 27px;" onclick="validateTable1()"></i>
+                                <i class="fas fa-headphones icon-gradient" style="cursor: pointer; font-size: 27px;"></i>
                             </td>
                         </tr>
                     </tbody>
@@ -53,42 +56,30 @@
 
         </div>
         
-        
-        <div class="fm-bg-primary-dark p-4 rounded-3  border-gradient">
+        <!-- DETAILS -->
+        <div class="d-flex align-items-end bgfm-primary-dark rounded-3 border-gradient py-3 pe-4">
             
-            <div class="d-flex justify-content-between mb-5 d-none">
-                
-                <button class="button-gradient fm-text  fw-bold">Fiiiiga</button>
-                
-                <div>
-                    <i class="fas fa-pen-to-square fa-2x fm-gradient me-3" style="cursor: pointer;"></i>
-                    <i class="fas fa-headphones fa-2x fm-gradient" style="cursor: pointer;"></i>
-                </div>
-                
-            </div>
-            
-
             <div class="text-white w-100 rounded-3">
                 
                 <ul class="timeline">
                     <li class="my-4">
-                        <div class="text-uppercase fw-bold text-gradient">Prodotti richiesti/interessanti</div>
+                        <div class="text-uppercase text-green">Prodotti richiesti/interessanti</div>
                         <div>- Gadget eco-friendly (bamboo, sughero)</div>
                         <div>- Powerbank con confezione regalo</div>
                         <div>- Gadget tech con NFC</div>
                     </li>
                     <li class="my-4">
-                        <div class="text-uppercase fw-bold text-gradient">Prossimo step</div>
+                        <div class="text-uppercase text-green">Prossimo step</div>
                         <div>- Inviare kit demo entro 30/06</div>
                         <div>- Inviare preventivo personalizzato entro 03/07</div>
                         <div>- Follow-up post 05/07</div>
                     </li>
                     <li class="my-4">
-                        <div class="text-uppercase fw-bold text-gradient">Criticità emerse</div>
+                        <div class="text-uppercase text-green">Criticità emerse</div>
                         <div>Ritardi spedizioni marzo 2024</div>
                     </li>
                     <li>
-                        <div class="text-uppercase fw-bold text-gradient">Azioni correttive promesse</div>
+                        <div class="text-uppercase text-green">Azioni correttive promesse</div>
                         <div>Verifica interna con logistica</div>
                     </li>
                     
@@ -96,6 +87,8 @@
                 
             </div>
             
+            <button class="button-gradient fw-bold text-uppercase">avanti</button>
+
         </div>
         
     </div>
