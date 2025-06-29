@@ -1,13 +1,12 @@
 :root {
     --secondary: #131f2b;
     --secondary-lighter: #28373f;
-
+    
     --primary: #cf2532;
     --primary: #FF6B6B;
     
-    --gradient: linear-gradient(to bottom, var(--primary), #adb5bd);
+    --gradient: linear-gradient(to bottom, var(--primary), #ffffff);
 }
-
 
 body {
     font-family: 'Lato', sans-serif;
@@ -31,41 +30,27 @@ body {
     color: transparent;
 }
 
-/* .text-gradient {
-  display: inline-block;
-  font-weight: bold;
-  background-image: var(--gradient);
-  background-clip: text;
-  color: transparent;
-} */
 .text-primary{
     color: var(--primary) !important;
 }
 .title{
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 500;
+    font-weight: 600;
     font-style: normal;
 }
 
 .button-gradient {
     position: relative;
-    padding: 0.3em 1em;
+    padding: 4px 1em;
     font-size: 1rem;
-    font-weight: bold;
     border: none;
     border-radius: 8px;
     background: transparent;
     cursor: pointer;
     z-index: 0;
-
-    /* Gradient text */
-    /* background-image: var(--gradient);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    -webkit-text-fill-color: transparent; */
-    }
+    color: white; 
+}
 
 .border-gradient {
     position: relative;
@@ -80,7 +65,7 @@ body {
     background: var(--gradient);
     border-radius: inherit;
     z-index: -1;
-
+    
     -webkit-mask:
     linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);
@@ -90,8 +75,8 @@ body {
 
 
 /**************
- TIMELINE 
- *************/
+TIMELINE 
+*************/
 ul.timeline {
     list-style-type: none;
     position: relative;
@@ -108,7 +93,6 @@ ul.timeline:before {
     margin-top: 4px;
 }
 ul.timeline > li {
-    /* margin: 20px 0; */
     padding-left: 20px;
 }
 ul.timeline > li:before {
@@ -127,8 +111,8 @@ ul.timeline > li:before {
 
 
 /*********************
- CUSTOM TABLE STYLE 
- ********************/
+CUSTOM TABLE STYLE 
+********************/
 .fm-table {
     background-color: var(--secondary-lighter);
     border-radius: 12px;
@@ -158,4 +142,87 @@ ul.timeline > li:before {
 
 .fm-table tbody tr:last-child td {
     border-bottom: none;
+}
+
+
+
+/****************************
+CK EDITOR STYLE OVERRIDE 
+****************************/
+.ck.ck-editor {
+    border: none !important; 
+    box-shadow: none !important; 
+    border-radius: 8px; 
+    overflow: hidden; 
+}
+
+.ck-editor__editable_inline {
+    background-color: var(--secondary) !important; 
+    color: white; 
+    padding: 1rem; 
+    min-height: 250px; 
+    border: none !important; 
+}
+.ck-toolbar {
+    background-color: var(--secondary-lighter) !important; 
+    color: white !important; 
+    border: none !important; 
+    border-top-left-radius: 8px !important; 
+    border-top-right-radius: 8px !important; 
+}
+.ck-button .ck-icon {
+    color: white !important; 
+}
+.ck-button.ck-on .ck-icon {
+    color: var(--primary) !important; 
+}
+.ck-dropdown .ck-button {
+    color: white !important;
+}
+.ck-button:hover:not(.ck-disabled), .ck-dropdown__button:hover:not(.ck-disabled) {
+    background-color: var(--secondary) !important; 
+}
+
+.ck.ck-sticky-panel__content {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* NEW Focus state for the entire CKEditor container */
+.ck.ck-editor:focus-within {
+    outline: none !important; 
+    /* Refined shadow: more opaque red, thinner spread */
+    box-shadow: 0 0 0 0.15rem rgba(255, 107, 107, 0.5) !important; /* Adjusted opacity and spread */
+    border: none !important; /* Ensure no border on the container itself */
+}
+/* Remove conflicting focus styles from inner elements */
+.ck-editor__editable_inline:focus-within {
+    box-shadow: none !important;
+}
+.ck.ck-editor__main .ck-editor__editable.ck-focused {
+    border: none !important; 
+    box-shadow: none !important; 
+}
+
+/* Custom style to remove any potential border on the header */
+.header-card {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* spondo header */
+.ck.ck-toolbar.ck-toolbar_grouping  {
+    background-color: #b65c5c!important;
+}
+
+
+
+
+/* === NEW: Fade Transition CSS for the main wrappers === */
+.fade-toggable {
+    transition: opacity 0.3s ease-in-out; /* Smooth opacity change */
+}
+.fade-toggable.is-hidden {
+    opacity: 0;
+    pointer-events: none; /* Disable clicks on hidden elements */
 }
