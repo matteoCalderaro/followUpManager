@@ -4,10 +4,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Follow-Up Manager</title>
+    <link rel="icon" type="image/png" href="media/favicon.ico">
     
-    <!-- GoogleFont -->
+    <!-- GoogleFont LATO-->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+
+    <!-- GoogleFont MONTSERRAT -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
     <!-- Fontawesome CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
@@ -17,26 +22,31 @@
     <link rel="stylesheet" href="style.css">
     
 </head>
-<body class="bgfm-primary">
+<body class="bgfm-secondary">
     
 
     <div class="container">
 
-        <!-- TITLE -->
-        <div class="text-gradient my-4 fs-2">Nome cliente</div>
+        <div class="d-flex align-items-center my-4 gap-4">
+
+            <img src="media/logo-bi.svg" width="50" alt="Another SVG icon">
+    
+            <div class="fs-2 text-primary">Bi Network s.r.l</div>
+        </div>
+
         
         <!-- TABLE -->
-        <div class="bgfm-primary-dark rounded-3  border-gradient mb-4 p-1 px-3">
+        <div class="bgfm-secondary-lighter rounded-3   mb-4 p-1 px-3">
             
             <div class="table-responsive">
                 <table class="table fm-table" style="width: 100%;">
                     <thead>
                         <tr>
-                            <th scope="col" class="text-green">Data visita</th>
-                            <th scope="col" class="text-green">Commerciale</th>
-                            <th scope="col" class="text-green">Tipo di interazione</th>
-                            <th scope="col" class="text-green">Obiettivo visita</th>
-                            <th scope="col" class="text-green"></th>
+                            <th scope="col" class="fw-bold text-primary">Data visita</th>
+                            <th scope="col" class="fw-bold text-primary">Commerciale</th>
+                            <th scope="col" class="fw-bold text-primary">Tipo di interazione</th>
+                            <th scope="col" class="fw-bold text-primary">Obiettivo visita</th>
+                            <th scope="col" class="fw-bold text-primary"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -57,29 +67,29 @@
         </div>
         
         <!-- DETAILS -->
-        <div class="d-flex align-items-end bgfm-primary-dark rounded-3 border-gradient py-3 pe-4">
+        <div class="d-flex align-items-end bgfm-secondary-lighter rounded-3  py-3 pe-4">
             
             <div class="text-white w-100 rounded-3">
                 
                 <ul class="timeline">
                     <li class="my-4">
-                        <div class="text-uppercase text-green">Prodotti richiesti/interessanti</div>
+                        <div class="text-uppercase fw-bold text-primary">Prodotti richiesti/interessanti</div>
                         <div>- Gadget eco-friendly (bamboo, sughero)</div>
                         <div>- Powerbank con confezione regalo</div>
                         <div>- Gadget tech con NFC</div>
                     </li>
                     <li class="my-4">
-                        <div class="text-uppercase text-green">Prossimo step</div>
+                        <div class="text-uppercase fw-bold text-primary">Prossimo step</div>
                         <div>- Inviare kit demo entro 30/06</div>
                         <div>- Inviare preventivo personalizzato entro 03/07</div>
                         <div>- Follow-up post 05/07</div>
                     </li>
                     <li class="my-4">
-                        <div class="text-uppercase text-green">Criticità emerse</div>
+                        <div class="text-uppercase fw-bold text-primary">Criticità emerse</div>
                         <div>Ritardi spedizioni marzo 2024</div>
                     </li>
                     <li>
-                        <div class="text-uppercase text-green">Azioni correttive promesse</div>
+                        <div class="text-uppercase fw-bold text-primary">Azioni correttive promesse</div>
                         <div>Verifica interna con logistica</div>
                     </li>
                     
@@ -87,7 +97,7 @@
                 
             </div>
             
-            <button class="button-gradient fw-bold text-uppercase">avanti</button>
+            <button class="button-gradient fw-bold text-uppercase text-white">avanti</button>
 
         </div>
         
