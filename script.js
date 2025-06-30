@@ -1,14 +1,20 @@
+console.log("Script loaded and DOMContentLoaded listener setting up...");
 // Global variable to hold the CKEditor instance
 let editorInstance;
+// Global variable to hold the audio player modal Bootstrap instance
+let audioPlayerModalInstance; 
 
-// Function to open the error modal (from your original project)
+// Function to open the text modal (formerly error modal)
 function openModal() {
-    const errorModalEl = document.getElementById('errorModal');
-    const errorModal = new bootstrap.Modal(errorModalEl);
-    errorModal.show();
+    console.log("openModal function called.");
+    const textModalEl = document.getElementById('errorModal'); // ID kept as errorModal based on your provided file
+    // Create Bootstrap modal instance each time, or get existing
+    const textModal = new bootstrap.Modal(textModalEl);
+    textModal.show();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    console.log("DOMContentLoaded event fired.");
     // Get references to your new parent containers for toggling
     const timelineContainerWrapper = document.getElementById('timelineContainerWrapper');
     const ckeditorContainerWrapper = document.getElementById('ckeditorContainerWrapper');
@@ -18,7 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const saveNotesButton = document.getElementById('saveNotesButton');
     const cancelNotesButton = document.getElementById('cancelNotesButton');
     const settingsIcon = document.getElementById('settingsIcon'); // Gear icon for spinner
-    const openAudioModalBtn = document.getElementById('openAudioModalBtn'); // Headphone icon for audio modal
     
     const spinnerOverlay = document.getElementById('spinnerOverlay'); // Spinner overlay reference
     
@@ -30,61 +35,100 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentTimeSpan = document.getElementById('currentTime');
     const durationSpan = document.getElementById('duration');
     const audioDownloadIcon = document.getElementById('audioDownloadIcon'); // New download icon in header
+    const openAudioModalBtn = document.getElementById('openAudioModalBtn'); // Headphone icon for audio modal
     
-    // Transcription Modal Body for text extraction (although not used directly for TTS src anymore)
-    const transcriptionModalBody = document.querySelector('#errorModal .modal-body');
-    
-    // Get audio modal instance
+    // Get modal elements for event listeners
+    const textModalEl = document.getElementById('errorModal'); // ID kept as errorModal
     const audioPlayerModalEl = document.getElementById('audioPlayerModal');
-    const audioPlayerModal = new bootstrap.Modal(audioPlayerModalEl);
     
-    // --- Initial State Setup (critical for fade transitions) ---
-    // Ensure timelineContainerWrapper is visible and active initially
-    timelineContainerWrapper.style.opacity = '1';
-    timelineContainerWrapper.style.pointerEvents = 'auto';
+    // Initialize audioPlayerModalInstance once DOM is ready
+    audioPlayerModalInstance = new bootstrap.Modal(audioPlayerModalEl);
+    
+    // --- Top-level Container References ---
+    const newTableContainer = document.getElementById('newTableContainer');
+    const mainContentContainer = document.getElementById('mainContentContainer');
+    const showMainContentBtn = document.getElementById('showMainContentBtn');
+    const showNewTableBtn = document.getElementById('showNewTableBtn');
+    
+    
+    // --- Initial State Setup for all containers ---
+    // newTableContainer starts visible and active
+    newTableContainer.classList.remove('is-hidden'); 
+    newTableContainer.style.display = 'block'; 
+    console.log("Initial state: newTableContainer visible.");
+    
+    // mainContentContainer starts hidden
+    mainContentContainer.classList.add('is-hidden'); 
+    mainContentContainer.style.display = 'none'; 
+    console.log("Initial state: mainContentContainer hidden.");
+    
+    // timelineContainerWrapper starts visible and active (nested in mainContentContainer)
+    timelineContainerWrapper.classList.remove('is-hidden'); 
     timelineContainerWrapper.style.display = 'block'; 
+    console.log("Initial state: timelineContainerWrapper visible.");
     
-    // Ensure ckeditorContainerWrapper is hidden initially
-    ckeditorContainerWrapper.style.opacity = '0';
-    ckeditorContainerWrapper.style.pointerEvents = 'none';
+    // ckeditorContainerWrapper starts hidden (nested in mainContentContainer)
+    ckeditorContainerWrapper.classList.add('is-hidden'); 
     ckeditorContainerWrapper.style.display = 'none'; 
+    console.log("Initial state: ckeditorContainerWrapper hidden.");
     
     // --- Function to hide an element with a smooth fade-out ---
     function hideElement(element, callback = null) {
-        element.style.opacity = '0'; // Start fading out visually
-        element.style.pointerEvents = 'none'; // Make it unclickable immediately
+        console.log(`hideElement called for: ${element.id}`);
+        // Ensure the element is part of the layout before applying transition for hiding
+        element.offsetWidth; 
+        element.classList.add('is-hidden'); // This applies opacity: 0 and pointer-events: none
         
         const transitionEndHandler = () => {
-            element.style.display = 'none'; // Remove from flow after fade
-            element.removeEventListener('transitionend', transitionEndHandler); // Clean up listener
+            console.log(`Transition ended for hiding: ${element.id}`);
+            element.style.display = 'none'; // Only set display: none AFTER the visual transition
+            element.removeEventListener('transitionend', transitionEndHandler);
             if (callback) {
-                callback(); // Execute callback after element is fully hidden
+                callback();
             }
         };
-        // Ensure the transitionend listener is on the element itself
         element.addEventListener('transitionend', transitionEndHandler, { once: true });
     }
     
     // --- Function to show an element with a smooth fade-in ---
     function showElement(element, displayType = 'block') { // Default to 'block'
-        element.style.display = displayType; // Make it occupy space immediately
+        console.log(`showElement called for: ${element.id}`);
+        element.style.display = displayType; // Set display first to make it part of layout
         
-        // Force reflow: This is CRITICAL. It ensures the browser applies the `display` change
-        // BEFORE animating the `opacity`. Without this, the opacity transition might not run.
+        // Force reflow: Ensures display change is applied BEFORE opacity transition
         element.offsetWidth; 
+        console.log(`Forced reflow for: ${element.id}`);
         
-        element.style.opacity = '1'; // Start fading in
-        element.style.pointerEvents = 'auto'; // Enable clicks
+        element.classList.remove('is-hidden'); // This removes opacity: 0, allowing it to transition to its natural opacity (often 1)
     }
     
-    // --- "Avanti" Button Click Handler ---
+    // --- Top-level Toggle Event Listeners ---
+    showMainContentBtn.addEventListener('click', () => {
+        console.log("showMainContentBtn (right arrow) clicked!");
+        hideElement(newTableContainer, () => {
+            setTimeout(() => {
+                showElement(mainContentContainer, 'block');
+            }, 100);
+        });
+    });
+    
+    showNewTableBtn.addEventListener('click', () => {
+        console.log("showNewTableBtn (left arrow) clicked!");
+        hideElement(mainContentContainer, () => {
+            setTimeout(() => {
+                showElement(newTableContainer, 'block');
+            }, 100);
+        });
+    });
+    
+    
+    // --- "Avanti" Button (Timeline to CKEditor) Click Handler ---
     avantiButton.addEventListener('click', () => {
-        // Hide the timeline wrapper, and then show CKEditor wrapper after a delay
+        console.log("Avanti button clicked (Timeline to CKEditor)");
         hideElement(timelineContainerWrapper, () => {
-            // This callback executes AFTER timelineContainerWrapper has faded out and display: none
-            setTimeout(() => { // Add a short delay before showing the next container
+            setTimeout(() => { 
                 showElement(ckeditorContainerWrapper, 'block'); 
-            }, 100); // 100ms delay (adjust as needed)
+            }, 100); 
         });
         
         // Initialize CKEditor if it hasn't been initialized yet
@@ -114,6 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // --- "Save Notes" Button Click Handler ---
     saveNotesButton.addEventListener('click', () => {
+        console.log("Save Notes button clicked.");
         if (editorInstance) {
             const notesContent = editorInstance.getData();
             console.log('Notes saved:', notesContent);
@@ -126,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // --- "Cancel Notes" Button Click Handler ---
     cancelNotesButton.addEventListener('click', () => {
-        console.log('Notes editing cancelled.');
+        console.log("Cancel Notes button clicked.");
         // Optionally clear CKEditor content on cancel
         if (editorInstance) {
             editorInstance.setData('');
@@ -137,17 +182,17 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Helper function to switch back to the timeline view
     function switchBackToTimeline() {
-        // Hide CKEditor wrapper, and then show timeline wrapper after a delay
+        console.log("switchBackToTimeline function called.");
         hideElement(ckeditorContainerWrapper, () => {
-            // This callback executes AFTER ckeditorContainerWrapper has faded out and display: none
-            setTimeout(() => { // Add a short delay before showing the next container
+            setTimeout(() => { 
                 showElement(timelineContainerWrapper, 'block'); 
-            }, 100); // 100ms delay (adjust as needed)
+            }, 100); 
         });
     }
     
     // --- Settings Icon Click Handler (for spinner) ---
     settingsIcon.addEventListener('click', () => {
+        console.log("Settings icon clicked.");
         spinnerOverlay.style.display = 'flex'; // Show the spinner overlay
         
         setTimeout(() => {
@@ -166,14 +211,17 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Event listener to open the audio modal
     openAudioModalBtn.addEventListener('click', () => {
+        console.log("Open Audio Modal button clicked.");
         // Set the audioPlayer.src to your local MP3 file
-        audioPlayer.src = "media/speech.mp3"; 
+        // IMPORTANT: If running locally, replace this URL with the actual path to your MP3 file, e.g., "media/speech.mp3"
+        audioPlayer.src = "http://techslides.com/demos/sample-audio.mp3"; 
         
-        audioPlayerModal.show();
+        audioPlayerModalInstance.show(); // Use the initialized instance
     });
     
     // Play/Pause functionality
     playPauseBtn.addEventListener('click', () => {
+        console.log("Play/Pause button clicked.");
         if (audioPlayer.paused) {
             audioPlayer.play();
             playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
@@ -203,6 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Reset player when modal is hidden
     audioPlayerModalEl.addEventListener('hidden.bs.modal', () => {
+        console.log("Audio Player Modal hidden.");
         audioPlayer.pause();
         audioPlayer.currentTime = 0;
         playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
@@ -212,6 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Download audio functionality for the new header icon
     audioDownloadIcon.addEventListener('click', () => {
+        console.log("Audio Download icon clicked.");
         const audioUrl = audioPlayer.src;
         const link = document.createElement('a');
         link.href = audioUrl;

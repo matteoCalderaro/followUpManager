@@ -220,7 +220,7 @@ CK EDITOR STYLE OVERRIDE
 
 /* === NEW: Fade Transition CSS for the main wrappers === */
 .fade-toggable {
-    transition: opacity 0.3s ease-in-out; /* Smooth opacity change */
+    transition: opacity 0.5s ease-in-out; /* Increased to 0.5s for better visibility */
 }
 .fade-toggable.is-hidden {
     opacity: 0;
@@ -416,7 +416,14 @@ CK EDITOR STYLE OVERRIDE
     background: var(--primary); /* Keep the same primary color on hover */
 }
 
-/* --- Custom Audio Player Styles --- */
+/* --- NEW: Blur for Bootstrap Modal Backdrop --- */
+.modal-backdrop.show {
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px); /* For Safari support */
+    background-color: rgba(0, 0, 0, 1) !important; /* Set to fully opaque black */
+    opacity: 0.7 !important; /* Control overall transparency with this property */
+}
+
 .audio-player-controls {
     display: flex;
     align-items: center;
@@ -470,12 +477,4 @@ CK EDITOR STYLE OVERRIDE
     font-size: 0.9rem;
     flex-shrink: 0; /* Prevent time from shrinking */
     text-align: right;
-}
-
-/* --- NEW: Blur for Bootstrap Modal Backdrop --- */
-.modal-backdrop.show {
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px); /* For Safari support */
-    background-color: rgba(0, 0, 0, 1) !important; /* Set to fully opaque black */
-    opacity: 0.7 !important; /* Control overall transparency with this property */
 }

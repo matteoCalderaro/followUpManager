@@ -28,13 +28,49 @@
 </head>
 <body class="bgfm-secondary">
     
-    <div class="container" style="margin-top: 80px;">
+    <!-- New Sibling Container for a new table -->
+    <div id="newTableContainer" class="container bgfm-secondary-lighter rounded-3 mb-4 p-1 px-3 fade-toggable" style="margin-top: 80px;">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <h5 class="modal-title fw-bold text-primary">Nuova sezione tabella</h5>
+            <i class="fas fa-arrow-right icon-gradient" style="cursor: pointer; font-size: 27px;" id="showMainContentBtn"></i> 
+        </div>
+        <div class="table-responsive">
+            <table class="table fm-table" style="width: 100%;">
+                <thead>
+                    <tr>
+                        <th scope="col" class="fw-bold text-primary">Data contatto</th>
+                        <th scope="col" class="fw-bold text-primary">Referente</th>
+                        <th scope="col" class="fw-bold text-primary">Canale</th>
+                        <th scope="col" class="fw-bold text-primary">Dettagli</th>
+                        <th scope="col" class="fw-bold text-primary"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>20/06/2025</td>
+                        <td>Giulia Verdi</td>
+                        <td>Telefonata</td>
+                        <td>Richiesta informazioni generali, catalogo prodotti</td>
+                        <td class="text-end">
+                            <i class="fas fa-cog icon-gradient me-3" style="cursor: pointer; font-size: 27px;"></i> 
+                            <i class="far fa-eye icon-gradient me-3" style="cursor: pointer; font-size: 27px;"></i>
+                            <i class="fas fa-headphones icon-gradient" style="cursor: pointer; font-size: 27px;"></i> 
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Main Content Container (now with an ID) -->
+    <div id="mainContentContainer" class="container fade-toggable" style="margin-top: 0px;">
         
-        <div class="d-flex align-items-center mb-4 gap-4">
-            
-            <img src="media/logo-bi.svg" width="50" alt="Another SVG icon">
-            
-            <div class="fs-2 text-primary title">Bi Network s.r.l</div>
+        <div class="d-flex align-items-center justify-content-between mb-4 gap-4">
+            <div class="d-flex align-items-center gap-4">
+                <img src="media/logo-bi.svg" width="50" alt="Another SVG icon">
+                <div class="fs-2 text-primary title">Bi Network s.r.l</div>
+            </div>
+            <i class="fas fa-arrow-left icon-gradient" style="cursor: pointer; font-size: 27px;" id="showNewTableBtn"></i>
         </div>
         
         
@@ -99,7 +135,7 @@
             </div>
         </div>
         
-        <div id="ckeditorContainerWrapper" class="bgfm-secondary-lighter rounded-3 py-3 fade-toggable" style="display: none;">
+        <div id="ckeditorContainerWrapper" class="bgfm-secondary-lighter rounded-3 py-3 fade-toggable">
             <div id="ckeditorCard" class="bgfm-secondary-lighter rounded-3 px-4">
                 <div class="text-white mb-3 text-uppercase text-primary fw-bold">Aggiungi note personali</div>
                 <textarea id="editor"></textarea>
@@ -128,15 +164,13 @@
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
             <div class="modal-content">
                 <div class="modal-header d-flex justify-content-between">
-                    <h5 class="modal-title fw-bold text-primary" id="errorModalLabel">Trascrizione dell'appuntamento (25/06/2025)</h5>
+                    <h5 class="modal-title fw-bold text-primary" id="errorModalLabel">Trascrizione dell'Appuntamento (25/06/2025)</h5>
                     <button type="button" data-bs-dismiss="modal" aria-label="Close" id="modalCloseButton"><i class="fas fa-times"></i></button>
                 </div>
                 <div class="modal-body" style=" max-height: 50vh; overflow-y: auto;">
                     <p>Ok, riepilogo veloce sull'appuntamento di oggi con il Sig. Bianchi di Bi Network. È andata abbastanza bene direi. All'inizio l'ho lasciato parlare, volevo capire bene cosa cercano in questo momento per i gadget promozionali. Mi è parso subito chiaro che hanno una certa sensibilità verso l'ambiente, quindi l'eco-friendly è un must. E poi sono molto attenti a personalizzare le cose, non vogliono il solito gadget standard, ma qualcosa che parli del loro brand in modo unico.</p>
                     
                     <p>Ho tirato fuori la nuova linea in bamboo e sughero, e lì ho visto che gli occhi gli brillavano. Segno che sono sulla strada giusta con quei prodotti. Poi è venuto fuori il discorso dei powerbank... mi ha chiesto se ne facciamo con confezioni regalo, e anche di gadget tech con NFC. Questa cosa dell'NFC è interessante, significa che puntano a campagne più innovative, interattive. C'è potenziale lì, devo approfondire cosa intendono esattamente.</p>
-                    
-                    <p>C'è stato un punto un'po' delicato, ha tirato fuori dei ritardi nelle spedizioni che hanno avuto a marzo 2024. Non con noi, per fortuna, era con un fornitore precedente. Però si capisce che sono un'po' scottati. Ho cercato di rassicurarlo al massimo sulla nostra logistica interna, sulle garanzie di consegna, sui nostri controlli qualità. Gli ho promesso che facciamo una verifica interna approfondita anche se non ci riguarda direttamente, giusto per mostrare il nostro impegno. La trasparenza è fondamentale in questi casi.</p>
                     
                     <h5>Prossimi Passi:</h5>
                     <ul>
@@ -152,7 +186,7 @@
             </div>
         </div>
     </div>
-
+    
     <!-- Audio Player Modal -->
     <div class="modal fade" id="audioPlayerModal" tabindex="-1" aria-labelledby="audioPlayerModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -166,9 +200,8 @@
                 </div>
                 <div class="modal-body text-center">
                     <!-- 
-                        IMPORTANT: Replace "media/speech.mp3" with the actual path
-                        to the MP3 file you generated and placed in your "media/" directory.
-                        e.g., src="media/appointment_summary.mp3"
+                        IMPORTANT: If running locally, replace "http://techslides.com/demos/sample-audio.mp3" 
+                        with the actual path to your MP3 file, e.g., "media/speech.mp3"
                     -->
                     <audio id="audioPlayer" src="media/speech.mp3" preload="metadata"></audio>
                     
