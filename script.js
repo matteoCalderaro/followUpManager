@@ -214,7 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log("Open Audio Modal button clicked.");
         // Set the audioPlayer.src to your local MP3 file
         // IMPORTANT: If running locally, replace this URL with the actual path to your MP3 file, e.g., "media/speech.mp3"
-        audioPlayer.src = "http://techslides.com/demos/sample-audio.mp3"; 
+        audioPlayer.src = "media/speech.mp3"; 
         
         audioPlayerModalInstance.show(); // Use the initialized instance
     });

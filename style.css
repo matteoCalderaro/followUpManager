@@ -1,430 +1,430 @@
 :root {
-    --secondary: #131f2b;
-    --secondary-lighter: #28373f;
-    
-    --primary: #cf2532;
-    --primary: #FF6B6B;
-    
-    --gradient: linear-gradient(to bottom, var(--primary), #ffffff);
-}
+            --secondary: #131f2b;
+            --secondary-lighter: #28373f;
+            
+            --primary: #cf2532;
+            --primary: #FF6B6B;
+            
+            --gradient: linear-gradient(to bottom, var(--primary), #ffffff);
+        }
+        
+        body {
+            font-family: 'Lato', sans-serif;
+        }
+        
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+        
+        .bgfm-secondary {
+            background-color: var(--secondary);
+        }
+        .bgfm-secondary-lighter {
+            background-color: var(--secondary-lighter);
+        }
+        
+        
+        .icon-gradient {
+            background: var(--gradient);
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .text-primary{
+            color: var(--primary) !important;
+        }
+        .title{
+            font-family: "Montserrat", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 600;
+            font-style: normal;
+        }
+        
+        .button-gradient {
+            position: relative;
+            padding: 4px 1em;
+            font-size: 1rem;
+            border: none;
+            border-radius: 8px;
+            background: transparent;
+            cursor: pointer;
+            z-index: 0;
+            color: white; 
+        }
+        
+        .border-gradient {
+            position: relative;
+            z-index: 0;
+        }
+        .button-gradient::before, 
+        .border-gradient::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            padding: 2px; /* Border thickness */
+            background: var(--gradient);
+            border-radius: inherit;
+            z-index: -1;
+            
+            -webkit-mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+        }
+        
+        
+        /**************
+        TIMELINE 
+        *************/
+        ul.timeline {
+            list-style-type: none;
+            position: relative;
+        }
+        ul.timeline:before {
+            content: ' ';
+            background: var(--gradient);
+            display: inline-block;
+            position: absolute;
+            left: 29px;
+            width: 2px;
+            height: calc(100% - 4px);
+            z-index: 400;
+            margin-top: 4px;
+        }
+        ul.timeline > li {
+            padding-left: 20px;
+        }
+        ul.timeline > li:before {
+            content: ' ';
+            background: var(--secondary-lighter);
+            display: inline-block;
+            position: absolute;
+            border-radius: 50%;
+            border: 3px solid var(--primary);
+            left: 22px;
+            width: 17px;
+            height: 17px;
+            z-index: 400;
+            margin-top: 4px;
+        }
+        
+        
+        /*********************
+        CUSTOM TABLE STYLE 
+        ********************/
+        .fm-table {
+            background-color: var(--secondary-lighter);
+            border-radius: 12px;
+            border: none;
+            width: 100% !important;
+            margin-bottom: 0;
+        }
+        
+        .fm-table thead th {
+            background: transparent;
+            color: white;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: none;
+            padding: 1rem 0.75rem 3px 10px;
+            position: relative;
+        }
+        
+        .fm-table tbody td {
+            background-color: var(--secondary-lighter);
+            color: white;
+            border: none;
+            padding: 6px 0.75rem;
+            border-bottom: 1px solid rgba(14, 233, 81, 0.1);
+        }
+        
+        .fm-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+        
+        
+        
+        /****************************
+        CK EDITOR STYLE OVERRIDE 
+        ****************************/
+        .ck.ck-editor {
+            border: none !important; 
+            box-shadow: none !important; 
+            border-radius: 8px; 
+            overflow: hidden; 
+        }
+        
+        .ck-editor__editable_inline {
+            background-color: #202A35 !important; /* Updated background color for better distinction */
+            color: white; 
+            padding: 1rem; 
+            min-height: 250px; 
+            border: none !important; 
+        }
+        .ck-toolbar {
+            background-color: var(--secondary-lighter) !important; 
+            color: white !important; 
+            border: none !important; 
+            border-top-left-radius: 8px !important; 
+            border-top-right-radius: 8px !important; 
+        }
+        .ck-button .ck-icon {
+            color: white !important; 
+        }
+        .ck-button.ck-on .ck-icon {
+            color: var(--primary) !important; 
+        }
+        .ck-dropdown .ck-button {
+            color: white !important;
+        }
+        .ck-button:hover:not(.ck-disabled), .ck-dropdown__button:hover:not(.ck-disabled) {
+            background-color: var(--secondary) !important; 
+        }
+        
+        .ck.ck-sticky-panel__content {
+            border: none !important;
+            box-shadow: none !important;
+        }
+        
+        /* NEW Focus state for the entire CKEditor container */
+        .ck.ck-editor:focus-within {
+            outline: none !important; 
+            /* Refined shadow: more opaque red, thinner spread */
+            box-shadow: 0 0 0 0.15rem rgba(255, 107, 107, 0.5) !important; /* Adjusted opacity and spread */
+            border: none !important; /* Ensure no border on the container itself */
+        }
+        /* Remove conflicting focus styles from inner elements */
+        .ck-editor__editable_inline:focus-within {
+            box-shadow: none !important;
+        }
+        .ck.ck-editor__main .ck-editor__editable.ck-focused {
+            border: none !important; 
+            box-shadow: none !important; 
+        }
+        
+        /* Custom style to remove any potential border on the header */
+        .header-card {
+            border: none !important;
+            box-shadow: none !important;
+        }
+        
+        /* spondo header */
+        .ck.ck-toolbar.ck-toolbar_grouping  {
+            background-color: #b65c5c!important;
+        }
+        
+        
+        
+        
+        /* === NEW: Fade Transition CSS for the main wrappers === */
+        .fade-toggable {
+            transition: opacity 0.5s ease-in-out; /* Increased to 0.5s for better visibility */
+        }
+        .fade-toggable.is-hidden {
+            opacity: 0;
+            pointer-events: none; /* Disable clicks on hidden elements */
+        }
+        
+        /* --- Spinner and Overlay Styles --- */
+        #spinnerOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 1) !important; /* Set to fully opaque black */
+            display: none; /* Hidden by default */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            z-index: 10000; /* Ensure it's on top of everything */
+            /* Add backdrop-filter for blur effect */
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px); /* For Safari support */
+            opacity: 0.7 !important; /* Control overall transparency with this property */
+        }
+        
+        /* Styles for the bar chart spinner */
+        .bar-spinner {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end; /* Align bars to the bottom */
+            width: 120px; /* Overall width of the spinner (increased) */
+            height: 90px; /* Overall height of the spinner (increased) */
+            padding: 15px 0; /* Added padding top/bottom to distance bars from edge */
+            box-sizing: content-box; /* Ensures padding adds to total height */
+        }
+        
+        .loading-bar {
+            width: 15px; /* Width of each bar (increased) */
+            height: 8px; /* Initial height of each bar (increased) */
+            background-color: var(--primary); /* Bar color */
+            margin: 0 3px; /* Spacing between bars */
+            border-radius: 2px; /* Slightly rounded corners for bars */
+            animation: bounce 1s ease-in-out infinite; /* Animation for bars */
+        }
+        
+        /* Staggered animation delays for each bar */
+        .loading-bar:nth-child(1) { animation-delay: 0s; }
+        .loading-bar:nth-child(2) { animation-delay: 0.1s; }
+        .loading-bar:nth-child(3) { animation-delay: 0.2s; }
+        .loading-bar:nth-child(4) { animation-delay: 0.3s; }
+        .loading-bar:nth-child(5) { animation-delay: 0.4s; }
+        
+        @keyframes bounce {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(2.5); } /* Makes the bar taller */
+        }
+        
+        /* --- Modal Styling --- */
+        .modal-content {
+            background-color: var(--secondary-lighter); /* Body and footer background */
+            color: white; /* Default text color for modal body */
+            border-radius: 12px; /* Added: Rounded border edges for modals */
+        }
+        
+        .modal-header {
+            background-color: var(--secondary-lighter); /* Header background */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+        }
+        
+        .modal-title {
+            color: var(--primary); /* Title color */
+            font-weight: bold; /* Make it bold like th texts */
+            text-transform: uppercase; /* Match th texts */
+            letter-spacing: 0.5px; /* Match th texts */
+        }
+        
+        /* Custom Close Button Styling */
+        #modalCloseButton, #audioModalCloseButton { /* Apply to both modals */
+            background: transparent; /* Ensure no default background */
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            width: 30px; /* Fixed width to make it round */
+            height: 30px; /* Fixed height to make it round */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%; /* Make it round */
+            transition: background-color 0.2s ease-in-out; /* Smooth hover effect */
+            margin-left: 10px; /* Spacing for the download icon */
+        }
+        
+        #modalCloseButton .fas.fa-times, #audioModalCloseButton .fas.fa-times {
+            font-size: 1.5rem; /* Icon size */
+            /* Apply gradient and make text transparent for the icon permanently */
+            background: var(--gradient);
+            background-clip: text;
+            color: transparent; /* This makes the text itself transparent, revealing the clipped background */
+            -webkit-text-fill-color: transparent; /* For better cross-browser compatibility */
+        }
+        
+        #modalCloseButton:hover, #audioModalCloseButton:hover {
+            background-color: rgba(255, 255, 255, 0.1); /* Slight background on hover */
+        }
+        
+        /* Override Bootstrap's focus style for btn-close if it adds a box-shadow */
+        #modalCloseButton:focus, #audioModalCloseButton:focus {
+            box-shadow: none !important;
+            outline: none !important;
+        }
+        
+        .modal-body {
+            background-color: var(--secondary-lighter); /* Body background */
+            color: white; /* Body text color */
+            /* Added: Rounded bottom corners for modal-body */
+            border-bottom-left-radius: 7px; 
+            border-bottom-right-radius: 7px; 
+        }
+        
+        /* Style for h5 inside modal body */
+        .modal-body h5 {
+            font-size: 1.1rem; /* Adjusted font size for h5 */
+            font-weight: bold; /* Keep it bold */
+            color: white; /* Ensure text color is white */
+            margin-top: 1rem; /* Add some spacing above the h5 */
+            margin-bottom: 0.5rem; /* Add some spacing below the h5 */
+        }
+        
+        .modal-body h5:first-child {
+            margin-top: 0; /* Remove top margin for the first h5 */
+        }
+        
+        /* Style for h4 inside modal body (kept original h4 styling if needed elsewhere) */
+        .modal-body h4 {
+            font-size: 1.2rem; /* Kept original h4 size for consistency if needed elsewhere */
+            font-weight: bold; /* Keep it bold */
+            color: white; /* Ensure text color is white */
+        }
+        
+        
+        .modal-footer {
+            background-color: var(--secondary-lighter); /* Footer background */
+            border-top: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+        }
+        
+        .modal-footer .btn-blue-dark { /* Target the specific button in your footer */
+            /* Apply button-gradient styles */
+            position: relative;
+            padding: 4px 1em;
+            font-size: 1rem;
+            border: none;
+            border-radius: 8px;
+            background: transparent;
+            cursor: pointer;
+            z-index: 0;
+            color: white !important; /* Override any Bootstrap default */
+            font-weight: bold; /* Match Aggiungi nota button */
+            text-transform: uppercase; /* Match Aggiungi nota button */
+            width: auto !important; /* Override inline width from original HTML */
+        }
+        .modal-footer .btn-blue-dark::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            padding: 2px; /* Border thickness */
+            background: var(--gradient);
+            border-radius: inherit;
+            z-index: -1;
+            -webkit-mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+        }
+        
+        /* --- Custom Scrollbar Styles for .modal-body --- */
+        .modal-body::-webkit-scrollbar {
+            width: 10px; /* Width of the scrollbar */
+        }
+        
+        .modal-body::-webkit-scrollbar-track {
+            background: rgba(255, 107, 107, 0.2); /* Lighter, semi-transparent primary color for the track */
+            border-radius: 10px; /* Rounded corners for the track */
+        }
+        
+        .modal-body::-webkit-scrollbar-thumb {
+            background: var(--primary); /* Primary color for the scrollbar thumb */
+            border-radius: 10px; /* Rounded corners for the thumb */
+            border: 2px solid rgba(255, 107, 107, 0.2); /* Creates visual distance by matching track color */
+            background-clip: padding-box; /* Ensures the background color respects the border */
+        }
+        
+        .modal-body::-webkit-scrollbar-thumb:hover {
+            background: var(--primary); /* Keep the same primary color on hover */
+        }
+        
+        /* --- NEW: Blur for Bootstrap Modal Backdrop --- */
+        .modal-backdrop.show {
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px); /* For Safari support */
+            background-color: rgba(0, 0, 0, 1) !important; /* Set to fully opaque black */
+            opacity: 0.7 !important; /* Control overall transparency with this property */
+        }
 
-body {
-    font-family: 'Lato', sans-serif;
-}
-
-*, *::before, *::after {
-    box-sizing: border-box;
-}
-
-.bgfm-secondary {
-    background-color: var(--secondary);
-}
-.bgfm-secondary-lighter {
-    background-color: var(--secondary-lighter);
-}
-
-
-.icon-gradient {
-    background: var(--gradient);
-    background-clip: text;
-    color: transparent;
-}
-
-.text-primary{
-    color: var(--primary) !important;
-}
-.title{
-    font-family: "Montserrat", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 600;
-    font-style: normal;
-}
-
-.button-gradient {
-    position: relative;
-    padding: 4px 1em;
-    font-size: 1rem;
-    border: none;
-    border-radius: 8px;
-    background: transparent;
-    cursor: pointer;
-    z-index: 0;
-    color: white; 
-}
-
-.border-gradient {
-    position: relative;
-    z-index: 0;
-}
-.button-gradient::before, 
-.border-gradient::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    padding: 2px; /* Border thickness */
-    background: var(--gradient);
-    border-radius: inherit;
-    z-index: -1;
-    
-    -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-}
-
-
-/**************
-TIMELINE 
-*************/
-ul.timeline {
-    list-style-type: none;
-    position: relative;
-}
-ul.timeline:before {
-    content: ' ';
-    background: var(--gradient);
-    display: inline-block;
-    position: absolute;
-    left: 29px;
-    width: 2px;
-    height: calc(100% - 4px);
-    z-index: 400;
-    margin-top: 4px;
-}
-ul.timeline > li {
-    padding-left: 20px;
-}
-ul.timeline > li:before {
-    content: ' ';
-    background: var(--secondary-lighter);
-    display: inline-block;
-    position: absolute;
-    border-radius: 50%;
-    border: 3px solid var(--primary);
-    left: 22px;
-    width: 17px;
-    height: 17px;
-    z-index: 400;
-    margin-top: 4px;
-}
-
-
-/*********************
-CUSTOM TABLE STYLE 
-********************/
-.fm-table {
-    background-color: var(--secondary-lighter);
-    border-radius: 12px;
-    border: none;
-    width: 100% !important;
-    margin-bottom: 0;
-}
-
-.fm-table thead th {
-    background: transparent;
-    color: white;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    border: none;
-    padding: 1rem 0.75rem 3px 10px;
-    position: relative;
-}
-
-.fm-table tbody td {
-    background-color: var(--secondary-lighter);
-    color: white;
-    border: none;
-    padding: 6px 0.75rem;
-    border-bottom: 1px solid rgba(14, 233, 81, 0.1);
-}
-
-.fm-table tbody tr:last-child td {
-    border-bottom: none;
-}
-
-
-
-/****************************
-CK EDITOR STYLE OVERRIDE 
-****************************/
-.ck.ck-editor {
-    border: none !important; 
-    box-shadow: none !important; 
-    border-radius: 8px; 
-    overflow: hidden; 
-}
-
-.ck-editor__editable_inline {
-    background-color: #202A35 !important; /* Updated background color for better distinction */
-    color: white; 
-    padding: 1rem; 
-    min-height: 250px; 
-    border: none !important; 
-}
-.ck-toolbar {
-    background-color: var(--secondary-lighter) !important; 
-    color: white !important; 
-    border: none !important; 
-    border-top-left-radius: 8px !important; 
-    border-top-right-radius: 8px !important; 
-}
-.ck-button .ck-icon {
-    color: white !important; 
-}
-.ck-button.ck-on .ck-icon {
-    color: var(--primary) !important; 
-}
-.ck-dropdown .ck-button {
-    color: white !important;
-}
-.ck-button:hover:not(.ck-disabled), .ck-dropdown__button:hover:not(.ck-disabled) {
-    background-color: var(--secondary) !important; 
-}
-
-.ck.ck-sticky-panel__content {
-    border: none !important;
-    box-shadow: none !important;
-}
-
-/* NEW Focus state for the entire CKEditor container */
-.ck.ck-editor:focus-within {
-    outline: none !important; 
-    /* Refined shadow: more opaque red, thinner spread */
-    box-shadow: 0 0 0 0.15rem rgba(255, 107, 107, 0.5) !important; /* Adjusted opacity and spread */
-    border: none !important; /* Ensure no border on the container itself */
-}
-/* Remove conflicting focus styles from inner elements */
-.ck-editor__editable_inline:focus-within {
-    box-shadow: none !important;
-}
-.ck.ck-editor__main .ck-editor__editable.ck-focused {
-    border: none !important; 
-    box-shadow: none !important; 
-}
-
-/* Custom style to remove any potential border on the header */
-.header-card {
-    border: none !important;
-    box-shadow: none !important;
-}
-
-/* spondo header */
-.ck.ck-toolbar.ck-toolbar_grouping  {
-    background-color: #b65c5c!important;
-}
-
-
-
-
-/* === NEW: Fade Transition CSS for the main wrappers === */
-.fade-toggable {
-    transition: opacity 0.5s ease-in-out; /* Increased to 0.5s for better visibility */
-}
-.fade-toggable.is-hidden {
-    opacity: 0;
-    pointer-events: none; /* Disable clicks on hidden elements */
-}
-
-/* --- Spinner and Overlay Styles --- */
-#spinnerOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 1) !important; /* Set to fully opaque black */
-    display: none; /* Hidden by default */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    z-index: 10000; /* Ensure it's on top of everything */
-    /* Add backdrop-filter for blur effect */
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px); /* For Safari support */
-    opacity: 0.7 !important; /* Control overall transparency with this property */
-}
-
-/* Styles for the bar chart spinner */
-.bar-spinner {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end; /* Align bars to the bottom */
-    width: 120px; /* Overall width of the spinner (increased) */
-    height: 90px; /* Overall height of the spinner (increased) */
-    padding: 15px 0; /* Added padding top/bottom to distance bars from edge */
-    box-sizing: content-box; /* Ensures padding adds to total height */
-}
-
-.loading-bar {
-    width: 15px; /* Width of each bar (increased) */
-    height: 8px; /* Initial height of each bar (increased) */
-    background-color: var(--primary); /* Bar color */
-    margin: 0 3px; /* Spacing between bars */
-    border-radius: 2px; /* Slightly rounded corners for bars */
-    animation: bounce 1s ease-in-out infinite; /* Animation for bars */
-}
-
-/* Staggered animation delays for each bar */
-.loading-bar:nth-child(1) { animation-delay: 0s; }
-.loading-bar:nth-child(2) { animation-delay: 0.1s; }
-.loading-bar:nth-child(3) { animation-delay: 0.2s; }
-.loading-bar:nth-child(4) { animation-delay: 0.3s; }
-.loading-bar:nth-child(5) { animation-delay: 0.4s; }
-
-@keyframes bounce {
-    0%, 100% { transform: scaleY(1); }
-    50% { transform: scaleY(2.5); } /* Makes the bar taller */
-}
-
-/* --- Modal Styling --- */
-.modal-content {
-    background-color: var(--secondary-lighter); /* Body and footer background */
-    color: white; /* Default text color for modal body */
-    border-radius: 12px; /* Added: Rounded border edges for modals */
-}
-
-.modal-header {
-    background-color: var(--secondary-lighter); /* Header background */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
-}
-
-.modal-title {
-    color: var(--primary); /* Title color */
-    font-weight: bold; /* Make it bold like th texts */
-    text-transform: uppercase; /* Match th texts */
-    letter-spacing: 0.5px; /* Match th texts */
-}
-
-/* Custom Close Button Styling */
-#modalCloseButton, #audioModalCloseButton { /* Apply to both modals */
-    background: transparent; /* Ensure no default background */
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    width: 30px; /* Fixed width to make it round */
-    height: 30px; /* Fixed height to make it round */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%; /* Make it round */
-    transition: background-color 0.2s ease-in-out; /* Smooth hover effect */
-    margin-left: 10px; /* Spacing for the download icon */
-}
-
-#modalCloseButton .fas.fa-times, #audioModalCloseButton .fas.fa-times {
-    font-size: 1.5rem; /* Icon size */
-    /* Apply gradient and make text transparent for the icon permanently */
-    background: var(--gradient);
-    background-clip: text;
-    color: transparent; /* This makes the text itself transparent, revealing the clipped background */
-    -webkit-text-fill-color: transparent; /* For better cross-browser compatibility */
-}
-
-#modalCloseButton:hover, #audioModalCloseButton:hover {
-    background-color: rgba(255, 255, 255, 0.1); /* Slight background on hover */
-}
-
-/* Override Bootstrap's focus style for btn-close if it adds a box-shadow */
-#modalCloseButton:focus, #audioModalCloseButton:focus {
-    box-shadow: none !important;
-    outline: none !important;
-}
-
-.modal-body {
-    background-color: var(--secondary-lighter); /* Body background */
-    color: white; /* Body text color */
-    /* Added: Rounded bottom corners for modal-body */
-    border-bottom-left-radius: 7px; 
-    border-bottom-right-radius: 7px; 
-}
-
-/* Style for h5 inside modal body */
-.modal-body h5 {
-    font-size: 1.1rem; /* Adjusted font size for h5 */
-    font-weight: bold; /* Keep it bold */
-    color: white; /* Ensure text color is white */
-    margin-top: 1rem; /* Add some spacing above the h5 */
-    margin-bottom: 0.5rem; /* Add some spacing below the h5 */
-}
-
-.modal-body h5:first-child {
-    margin-top: 0; /* Remove top margin for the first h5 */
-}
-
-/* Style for h4 inside modal body (kept original h4 styling if needed elsewhere) */
-.modal-body h4 {
-    font-size: 1.2rem; /* Kept original h4 size for consistency if needed elsewhere */
-    font-weight: bold; /* Keep it bold */
-    color: white; /* Ensure text color is white */
-}
-
-
-.modal-footer {
-    background-color: var(--secondary-lighter); /* Footer background */
-    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
-}
-
-.modal-footer .btn-blue-dark { /* Target the specific button in your footer */
-    /* Apply button-gradient styles */
-    position: relative;
-    padding: 4px 1em;
-    font-size: 1rem;
-    border: none;
-    border-radius: 8px;
-    background: transparent;
-    cursor: pointer;
-    z-index: 0;
-    color: white !important; /* Override any Bootstrap default */
-    font-weight: bold; /* Match Aggiungi nota button */
-    text-transform: uppercase; /* Match Aggiungi nota button */
-    width: auto !important; /* Override inline width from original HTML */
-}
-.modal-footer .btn-blue-dark::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    padding: 2px; /* Border thickness */
-    background: var(--gradient);
-    border-radius: inherit;
-    z-index: -1;
-    -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-}
-
-/* --- Custom Scrollbar Styles for .modal-body --- */
-.modal-body::-webkit-scrollbar {
-    width: 10px; /* Width of the scrollbar */
-}
-
-.modal-body::-webkit-scrollbar-track {
-    background: rgba(255, 107, 107, 0.2); /* Lighter, semi-transparent primary color for the track */
-    border-radius: 10px; /* Rounded corners for the track */
-}
-
-.modal-body::-webkit-scrollbar-thumb {
-    background: var(--primary); /* Primary color for the scrollbar thumb */
-    border-radius: 10px; /* Rounded corners for the thumb */
-    border: 2px solid rgba(255, 107, 107, 0.2); /* Creates visual distance by matching track color */
-    background-clip: padding-box; /* Ensures the background color respects the border */
-}
-
-.modal-body::-webkit-scrollbar-thumb:hover {
-    background: var(--primary); /* Keep the same primary color on hover */
-}
-
-/* --- NEW: Blur for Bootstrap Modal Backdrop --- */
-.modal-backdrop.show {
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px); /* For Safari support */
-    background-color: rgba(0, 0, 0, 1) !important; /* Set to fully opaque black */
-    opacity: 0.7 !important; /* Control overall transparency with this property */
-}
-
-.audio-player-controls {
+        .audio-player-controls {
     display: flex;
     align-items: center;
     gap: 15px;
